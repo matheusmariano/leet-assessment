@@ -22,3 +22,13 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Models\SocialProfile::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => function () {
+            return factory(App\Models\User::class)->create()->id;
+        },
+        'username' => $faker->username,
+        'password' => encrypt('secret'),
+    ];
+});

@@ -7,21 +7,21 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 use App\Models\User;
+use App\Models\SocialProfile;
 
 class UserTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * Test sanity of User model.
-     *
-     * @return void
-     */
-    public function testSanity()
+    public function testUser()
     {
         $user = factory(User::class)->create();
 
+        // Test sanity.
         $this->assertTrue($user->exists());
+
+        // Assert user has many social profiles.
+        $this->assertContainsOnlyInstancesOf(SocialProfile::class, $user->socialProfiles);
     }
 
     public function testEmailShouldBeUnique()
