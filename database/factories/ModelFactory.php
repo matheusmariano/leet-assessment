@@ -32,3 +32,32 @@ $factory->define(App\Models\SocialProfile::class, function (Faker\Generator $fak
         'password' => encrypt('secret'),
     ];
 });
+
+$factory->define(App\Models\FacebookSnapshot::class, function (Faker\Generator $faker) {
+    return [
+        'social_profile_id' => function () {
+            return factory(App\Models\SocialProfile::class)->create()->id;
+        },
+        'likes' => rand(0, 100),
+    ];
+});
+
+$factory->define(App\Models\TwitterSnapshot::class, function (Faker\Generator $faker) {
+    return [
+        'social_profile_id' => function () {
+            return factory(App\Models\SocialProfile::class)->create()->id;
+        },
+        'followers' => rand(0, 100),
+        'following' => rand(0, 100),
+    ];
+});
+
+$factory->define(App\Models\InstagramSnapshot::class, function (Faker\Generator $faker) {
+    return [
+        'social_profile_id' => function () {
+            return factory(App\Models\SocialProfile::class)->create()->id;
+        },
+        'followers' => rand(0, 100),
+        'following' => rand(0, 100),
+    ];
+});

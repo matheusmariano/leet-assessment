@@ -14,4 +14,19 @@ class SocialProfile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function facebookSnapshots()
+    {
+        return $this->hasMany(FacebookSnapshot::class);
+    }
+
+    public function twitterSnapshots()
+    {
+        return $this->hasMany(TwitterSnapshot::class);
+    }
+
+    public function instagramSnapshots()
+    {
+        return $this->hasMany(InstagramSnapshot::class);
+    }
 }

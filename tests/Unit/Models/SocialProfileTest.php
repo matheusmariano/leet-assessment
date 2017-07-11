@@ -8,6 +8,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 use App\Models\User;
 use App\Models\SocialProfile;
+use App\Models\FacebookSnapshot;
+use App\Models\TwitterSnapshot;
 
 class SocialProfileTest extends TestCase
 {
@@ -22,5 +24,14 @@ class SocialProfileTest extends TestCase
 
         // Test if social profile belongs to user.
         $this->assertInstanceOf(User::class, $socialProfile->user);
+
+        // Test if social profile is morphed by many Facebook snapshots.
+        $this->assertContainsOnlyInstancesOf(FacebookSnapshot::class, $socialProfile->facebookSnapshots);
+
+        // Test if social profile is morphed by many Twitter snapshots.
+        $this->assertContainsOnlyInstancesOf(TwitterSnapshot::class, $socialProfile->twitterSnapshots);
+
+        // Test if social profile is morphed by many Instagram snapshots.
+        $this->assertContainsOnlyInstancesOf(InstagramSnapshot::class, $socialProfile->instagramSnapshots);
     }
 }
