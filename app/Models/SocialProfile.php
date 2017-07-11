@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SocialProfile extends Model
 {
-    protected $fillable = ['user_id', 'username', 'password'];
+    protected $fillable = ['user_id', 'type', 'username', 'password'];
 
     protected $hidden = ['password'];
 

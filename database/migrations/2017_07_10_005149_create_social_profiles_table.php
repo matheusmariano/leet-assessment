@@ -21,6 +21,7 @@ class CreateSocialProfilesTable extends Migration
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->enum('type', ['facebook', 'twitter', 'instagram']);
             $table->string('username');
             $table->string('password');
             $table->timestamps();
