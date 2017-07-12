@@ -35,4 +35,23 @@ class SocialProfileTest extends TestCase
             ->assertStatus(200)
             ->assertJsonFragment($socialProfile->toArray());
     }
+
+    public function testStore()
+    {
+        $socialProfile = [
+            'type' => 'facebook',
+            'username' => 'user',
+            'password' => 'secret'
+        ];
+
+        $response = $this
+            ->actingAs($this->user)
+            ->json('POST', 'api/social_profile', $socialProfile);
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonFragment(
+                collect($socialProfile)->only(['type', 'username'])->toArray()
+            );
+    }
 }

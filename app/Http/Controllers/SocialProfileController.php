@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SocialProfile;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Factory as Auth;
+
+use App\Models\SocialProfile;
 
 class SocialProfileController extends Controller
 {
@@ -33,9 +35,13 @@ class SocialProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Auth $auth, Request $request)
     {
-        //
+        return $auth->user()->socialProfiles()->create([
+            'type' => $request->input('type'),
+            'username' => $request->input('username'),
+            'password' => encrypt($request->input('password')),
+        ]);
     }
 
     /**

@@ -29,6 +29,7 @@ $factory->define(App\Models\SocialProfile::class, function (Faker\Generator $fak
         'user_id' => function () {
             return factory(App\Models\User::class)->create()->id;
         },
+        'type' => 'facebook',
         'username' => $faker->username,
         'password' => encrypt('secret'),
     ];
