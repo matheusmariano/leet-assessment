@@ -90,8 +90,12 @@ class SocialProfileController extends Controller
      * @param  \App\Models\SocialProfile  $socialProfile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SocialProfile $socialProfile)
+    public function destroy(Auth $auth, SocialProfile $socialProfile)
     {
-        //
+        if ($socialProfile->user->id !== $auth->user()->id) {
+            return abort(401);
+        }
+
+        $socialProfile->delete();
     }
 }

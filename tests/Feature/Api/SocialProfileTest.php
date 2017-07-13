@@ -85,4 +85,28 @@ class SocialProfileTest extends TestCase
         $response
             ->assertStatus(401);
     }
+
+    public function testDestroy()
+    {
+        $socialProfile = $this->user->socialProfiles()->save(
+            factory(SocialProfile::class)->make()
+        );
+
+        $response = $this
+            ->actingAs($this->user)
+            ->json('DELETE', 'api/social_profile/' . $socialProfile->id);
+
+        $response
+            ->assertStatus(200);
+
+        // Wrong user
+        $socialProfile = factory(SocialProfile::class)->create();
+
+        $response = $this
+            ->actingAs($this->user)
+            ->json('DELETE', 'api/social_profile/' . $socialProfile->id);
+
+        $response
+            ->assertStatus(401);
+    }
 }
