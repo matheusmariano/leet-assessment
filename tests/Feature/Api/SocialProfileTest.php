@@ -54,4 +54,35 @@ class SocialProfileTest extends TestCase
                 collect($socialProfile)->only(['type', 'username'])->toArray()
             );
     }
+
+    public function testUpdate()
+    {
+        $socialProfile = $this->user->socialProfiles()->save(
+            factory(SocialProfile::class)->make()
+        );
+
+        $response = $this
+            ->actingAs($this->user)
+            ->json('PUT', 'api/social_profile/' . $socialProfile->id, [
+                'username' => 'newusername'
+            ]);
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonFragment([
+                'username' => 'newusername'
+            ]);
+
+        // Wrong user
+        $socialProfile = factory(SocialProfile::class)->create();
+
+        $response = $this
+            ->actingAs($this->user)
+            ->json('PUT', 'api/social_profile/' . $socialProfile->id, [
+                'username' => 'newusername'
+            ]);
+
+        $response
+            ->assertStatus(401);
+    }
 }

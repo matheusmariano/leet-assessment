@@ -73,9 +73,15 @@ class SocialProfileController extends Controller
      * @param  \App\Models\SocialProfile  $socialProfile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SocialProfile $socialProfile)
+    public function update(Auth $auth, Request $request, SocialProfile $socialProfile)
     {
-        //
+        if ($socialProfile->user->id !== $auth->user()->id) {
+            return abort(401);
+        }
+
+        $socialProfile->update($request->all());
+
+        return $socialProfile;
     }
 
     /**
