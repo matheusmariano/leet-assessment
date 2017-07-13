@@ -19,6 +19,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
+        'api_token' => str_random(60),
         'remember_token' => str_random(10),
     ];
 });
@@ -28,6 +29,7 @@ $factory->define(App\Models\SocialProfile::class, function (Faker\Generator $fak
         'user_id' => function () {
             return factory(App\Models\User::class)->create()->id;
         },
+        'type' => 'facebook',
         'username' => $faker->username,
         'password' => encrypt('secret'),
     ];
