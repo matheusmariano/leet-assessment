@@ -35,6 +35,24 @@ $factory->define(App\Models\SocialProfile::class, function (Faker\Generator $fak
     ];
 });
 
+$factory->state(App\Models\SocialProfile::class, 'facebook', function (Faker\Generator $faker) {
+    return [
+        'type' => 'facebook',
+    ];
+});
+
+$factory->state(App\Models\SocialProfile::class, 'twitter', function (Faker\Generator $faker) {
+    return [
+        'type' => 'twitter',
+    ];
+});
+
+$factory->state(App\Models\SocialProfile::class, 'instagram', function (Faker\Generator $faker) {
+    return [
+        'type' => 'instagram',
+    ];
+});
+
 $factory->define(App\Models\FacebookSnapshot::class, function (Faker\Generator $faker) {
     return [
         'social_profile_id' => function () {
