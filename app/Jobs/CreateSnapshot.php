@@ -72,7 +72,10 @@ class CreateSnapshot implements ShouldQueue
 
     protected function getFacebookSnapshot($username, $password)
     {
-        $response = $this->client->get('/info', compact('username', 'password'));
+        $response = $this->client->get(
+            env('FACEBOOK_API_URL') . '/info',
+            compact('username', 'password')
+        );
 
         $result = json_decode((string) $response->getBody());
 
@@ -83,7 +86,10 @@ class CreateSnapshot implements ShouldQueue
 
     protected function getTwitterSnapshot($username, $password)
     {
-        $response = $this->client->get('/info', compact('username', 'password'));
+        $response = $this->client->get(
+            env('TWITTER_API_URL') . '/info',
+            compact('username', 'password')
+        );
 
         $result = json_decode((string) $response->getBody());
 
@@ -95,7 +101,10 @@ class CreateSnapshot implements ShouldQueue
 
     protected function getInstagramSnapshot($username, $password)
     {
-        $response = $this->client->get('/info', compact('username', 'password'));
+        $response = $this->client->get(
+            env('INSTAGRAM_API_URL') . '/info',
+            compact('username', 'password')
+        );
 
         $result = json_decode((string) $response->getBody());
 

@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Models\User;
 use App\Models\SocialProfile;
 
-class SocialProfileTest extends TestCase
+class SocialProfileControllerTest extends TestCase
 {
     use DatabaseMigrations;
 

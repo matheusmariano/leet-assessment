@@ -17,4 +17,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('social_profile', 'SocialProfileController', [
         'except' => ['index', 'create', 'edit'],
     ]);
+
+    Route::get('social_profile/{social_profile}/report', 'ReportController@index');
 });
