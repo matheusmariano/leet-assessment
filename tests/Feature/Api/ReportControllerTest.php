@@ -44,7 +44,7 @@ class ReportControllerTest extends TestCase
         $this->assertArraySubset(
             array_map(function ($index) {
                 return [
-                    'likes' => $index * 50,
+                    'likes' => 50,
                     'created_at' => Carbon::now()->subDays(4 - $index)->startOfDay()->toDateTimeString(),
                 ];
             }, range(1, 3)),
