@@ -1,0 +1,90 @@
+FORMAT: 1A
+HOST: http://localhost/api
+
+# Leet Assessment
+
+# Group Social Profile
+
+## Social Network Profiles [/social_profile]
+
+### Create Profile [POST]
+
++ Request Create a social network profile.
+
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+
+    + Attributes (SocialProfileFillable)
+
++ Response 200 (application/json)
+    + Attributes (SocialProfileVisible)
+
+## Social Network Profile [/social_profile/{id}]
+
++ Parameters
+    + id: 1 (number, required) - Social network profile ID
+
+### Show Profile [GET]
+
++ Response 200 (application/json)
+    + Attributes (SocialProfileVisible)
+
+### Update Profile [PUT]
+
++ Request Update a social network profile.
+
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+
+    + Attributes (SocialProfileFillable)
+
++ Response 200 (application/json)
+    + Attributes (SocialProfileVisible)
+
+### Delete Profile [DELETE]
+
++ Response 200 (application/json)
+
+## Social Network Profile Report [/social_profile/{id}/report]
+
++ Parameters
+    + id: 1 (number)
+
+### Generate Report [GET]
+
++ Request Generate social network profile report.
+
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+
+    + Attributes (SocialProfileGenerateReport)
+
++ Response 200 (application/json)
+    + Attributes (SocialProfileReport)
+
+# Data Structures
+
+## SocialProfile (object)
++ username: markzuckerberg (string)
+
+## SocialProfileFillable (SocialProfile)
++ password: worlddomination (string)
+
+## SocialProfileVisible (SocialProfile)
++ id: 1 (number)
++ created_at: timestamp (string)
++ updated_at: timestamp (string)
+
+## SocialProfileGenerateReport (object)
++ start_date: timestamp (string)
++ end_date: timestamp (string)
+
+## SocialProfileReport (object)
++ followers: 256 (number)
++ following: 64 (number)
